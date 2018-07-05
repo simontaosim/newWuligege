@@ -2,6 +2,9 @@ import { EXPECT_GET_MOVIES_BY_TAG, GET_MOVIES_BY_TAG_FAIL, GET_MOVIES_BY_TAG_SUC
 
 export default function MoviesReducer(state={
     list: [],
+    movies: {
+
+    },
     loading: false,
     failedReason: "",
     onLoadTimes: 0,
@@ -28,8 +31,11 @@ export default function MoviesReducer(state={
         case GET_MOVIES_BY_TAG_SUCCESS:
             let onLoadTimes = state.onLoadTimes;
             onLoadTimes++
+            let movies = state.movies;
+            movies[state.tag] = action.movies;
             return Object.assign({}, state, {
                 list: action.movies,
+                movies,
                 loading: false,
                 failedReason: "",
                 onLoadTimes

@@ -1,63 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
-import {getMoviesByTag} from '../actions/movies.js'
+import Grid from '@material-ui/core/Grid';
+import MovieCard from '../components/MovieCard';
+import  { connect } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { getMoviesByTag } from '../actions/movies';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
-import {connect} from 'react-redux';
 
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'left',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+    flexGrow: 2,
   },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
+
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
 });
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
 class HomePage extends React.Component {
 
 
   componentDidMount(){
-    const { onLoadTimes} = this.props;
 
       if(!this.props.open){
-         
-          this.loadMoives("热门");
+        this.loadMoives("热门");
   
       }
+      
   }
+
+
   loadMoives=(tag)=>{
     const { dispatch } = this.props;
     
@@ -67,29 +48,125 @@ class HomePage extends React.Component {
     this.props.history.push('/movies/'+id+'/play');
   }
   render(){
-    const { classes, movies } = this.props;
-    
+    const { classes, movies, tag, loading } = this.props;
+    let moviesComponent =null
+    if(movies){
+      moviesComponent  = movies.map(movie=>{
+        return <Grid key={movie._id} item xs>
+                <MovieCard movie={movie}  />
+            </Grid>
+      })
+    }
     return (
         <div className={classes.root}>
-          <GridList cellHeight={180} className={classes.gridList}>
-            <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-              <ListSubheader component="div">"热门"</ListSubheader>
-            </GridListTile>
-            {movies.map(tile => (
-              <GridListTile key={tile.cover}>
-                <img src={tile.cover} alt={tile.title} />
-                <GridListTileBar onClick={() => this.handlePushToMovie(tile._id)}
-                  title={tile.title}
-                  subtitle={<span>by: {tile.actors[0]}</span>}
-                  actionIcon={
-                    <IconButton className={classes.icon}>
-                      <InfoIcon />
-                    </IconButton>
-                  }
-                />
-              </GridListTile>
-            ))}
-          </GridList>
+         <Typography variant="headline" gutterBottom>{tag? tag : "热门"}视频</Typography>
+            <Divider light />
+              <Grid container spacing={24} 
+              alignItems="center"
+              direction="row"
+              justify="center"
+              >
+                { 
+                  loading &&
+                  <CircularProgress className={classes.progress} />
+                }
+                
+                {!loading && moviesComponent}
+
+                { 
+                  movies && movies.length === 0 && !loading &&
+                  <Typography variant="headline" gutterBottom>暂无，敬请期待</Typography>
+                  
+                }
+          
+        </Grid>
+        <Divider light />
+        <Typography variant="headline" gutterBottom>诱人美图</Typography>
+            <Divider light />
+              <Grid container spacing={24} 
+              alignItems="center"
+              direction="row"
+              justify="center"
+              >
+                { 
+                  loading &&
+                  <CircularProgress className={classes.progress} />
+                }
+                
+                {!loading && moviesComponent}
+
+                { 
+                  movies && movies.length === 0 && !loading &&
+                  <Typography variant="headline" gutterBottom>暂无，敬请期待</Typography>
+                  
+                }
+          
+        </Grid>
+        <Divider light />
+
+        <Typography variant="headline" gutterBottom>可以很丧</Typography>
+            <Divider light />
+              <Grid container spacing={24} 
+              alignItems="center"
+              direction="row"
+              justify="center"
+              >
+                { 
+                  loading &&
+                  <CircularProgress className={classes.progress} />
+                }
+                
+                {!loading && moviesComponent}
+
+                { 
+                  movies && movies.length === 0 && !loading &&
+                  <Typography variant="headline" gutterBottom>暂无，敬请期待</Typography>
+                  
+                }
+          
+        </Grid>
+        <Typography variant="headline" gutterBottom>文学 | 或情色阅读</Typography>
+            <Divider light />
+              <Grid container spacing={24} 
+              alignItems="center"
+              direction="row"
+              justify="center"
+              >
+                { 
+                  loading &&
+                  <CircularProgress className={classes.progress} />
+                }
+                
+                {!loading && moviesComponent}
+
+                { 
+                  movies && movies.length === 0 && !loading &&
+                  <Typography variant="headline" gutterBottom>暂无，敬请期待</Typography>
+                  
+                }
+          
+        </Grid>
+        <Typography variant="headline" gutterBottom>漫画</Typography>
+            <Divider light />
+              <Grid container spacing={24} 
+              alignItems="center"
+              direction="row"
+              justify="center"
+              >
+                { 
+                  loading &&
+                  <CircularProgress className={classes.progress} />
+                }
+                
+                {!loading && moviesComponent}
+
+                { 
+                  movies && movies.length === 0 && !loading &&
+                  <Typography variant="headline" gutterBottom>暂无，敬请期待</Typography>
+                  
+                }
+          
+        </Grid>
         </div>
       );
 
@@ -104,7 +181,7 @@ HomePage.propTypes = {
 
 function mapToState(state){
     return {
-        movies: state.MoviesReducer.list,
+       movies: state.MoviesReducer.movies[state.MoviesReducer.tag],
         loading: state.MoviesReducer.loading,
         err: state.MoviesReducer.failedReason,
         open: state.AppReducer.sideBarOpen,

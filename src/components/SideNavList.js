@@ -45,7 +45,7 @@ class SideNavList extends React.Component {
             <div>
             <NavLink  exact to="/tags/冷门" style={{textDecoration: 'none'}}>
 
-            <ListItem button disabled={locked} onClick={this.handleClick}>
+            <ListItem button   onClick={this.handleClick}>
             
                 <ListItemIcon>
                     {testIcon.icon}
@@ -57,7 +57,7 @@ class SideNavList extends React.Component {
             </NavLink>
             <NavLink  exact to="/tags/番号" style={{textDecoration: 'none'}}>
 
-                <ListItem button disabled={locked} onClick={this.handleClick}>
+                <ListItem button   onClick={this.handleClick}>
                 <ListItemIcon>
                     <StarIcon />
                 </ListItemIcon>
@@ -66,7 +66,7 @@ class SideNavList extends React.Component {
             </NavLink>
             <NavLink  exact to="/tags/站长推荐" style={{textDecoration: 'none'}}>
 
-                <ListItem button disabled={locked} onClick={this.handleClick}>
+                <ListItem button   onClick={this.handleClick}>
                     <ListItemIcon>
                         <SendIcon />
                     </ListItemIcon>
@@ -75,7 +75,7 @@ class SideNavList extends React.Component {
             </NavLink>
             <NavLink  exact to="/tags/美剧" style={{textDecoration: 'none'}}>
 
-                <ListItem button disabled={locked} onClick={this.handleClick}>
+                <ListItem button   onClick={this.handleClick}>
                     <ListItemIcon>
                         <DraftsIcon />
                     </ListItemIcon>
@@ -84,7 +84,7 @@ class SideNavList extends React.Component {
             </NavLink>
             <NavLink  exact to="/tags/英剧" style={{textDecoration: 'none'}}>
 
-                <ListItem button disabled={locked} onClick={this.handleClick}>
+                <ListItem button   onClick={this.handleClick}>
                     <ListItemIcon>
                         <MailIcon />
                     </ListItemIcon>
@@ -93,7 +93,7 @@ class SideNavList extends React.Component {
             </NavLink>
             <NavLink  exact to="/tags/动漫" style={{textDecoration: 'none'}}>
 
-                <ListItem button disabled={locked} onClick={this.handleClick}>
+                <ListItem button   onClick={this.handleClick}>
                 <ListItemIcon>
                     <DeleteIcon />
                 </ListItemIcon>
